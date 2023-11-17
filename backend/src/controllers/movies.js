@@ -12,7 +12,7 @@ module.exports = {
             }
         });
     
-    res.send(response.data)
+        res.send(response.data)
     },
  
     details: async function(req, res, next){
@@ -22,12 +22,11 @@ module.exports = {
                     api_key: process.env.API_KEY,
                     language: req.query.language || 'pt-BR'
                 }
-        });
-        res.send(response.data)
+            });
+            res.send(response.data)
         }else{
             res.send("ID não informado ou incorreto")
         }
 
-        
     }
 }
