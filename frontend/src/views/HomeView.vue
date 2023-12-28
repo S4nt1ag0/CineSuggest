@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script setup>
 import MoviesCatalog from '../components/moviesCatalog/MoviesCatalog.vue'
 </script>
 

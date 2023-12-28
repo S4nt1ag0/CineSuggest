@@ -1,20 +1,17 @@
-<script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
+<script>
+import HeaderCustom from './components/HeaderCustom.vue'
+import { RouterView } from 'vue-router'
+export default {
+  components: {
+    HeaderCustom
+  }
+}
 </script>
 
 <template>
   <div class="max_container">
     <header>
-      <div class="wrapper">
-        <nav>
-          <RouterLink to="/">Lançamentos</RouterLink>
-          <RouterLink to="/about">Ação</RouterLink>
-          <RouterLink to="/about">Romance</RouterLink>
-          <RouterLink to="/about">Aventura</RouterLink>
-          <RouterLink to="/about">Terror</RouterLink>
-          <RouterLink to="/about">Comédia</RouterLink>
-        </nav>
-      </div>
+      <HeaderCustom />
     </header>
     <RouterView />
   </div>
