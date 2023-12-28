@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import MoviesCatalog from '../components/MoviesCatalog.vue'
+import MoviesCatalog from '../components/moviesCatalog/MoviesCatalog.vue'
 </script>
 
 <template>
