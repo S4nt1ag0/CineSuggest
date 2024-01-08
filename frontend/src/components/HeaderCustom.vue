@@ -1,29 +1,62 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
 import Logo from './icons/logoSVG.vue'
+import Profile from './icons/profileSVG.vue'
 export default {
   components: {
-    Logo
+    Logo,
+    Profile
   }
 }
 </script>
 
 <template>
-  <div class="wrapper">
-    <nav>
-      <RouterLink to="/">
-        <Logo />
-      </RouterLink>
-      <RouterLink to="/about">GitHub</RouterLink>
-      <RouterLink to="/about">Sign in</RouterLink>
-    </nav>
-  </div>
+  <header>
+    <div class="wrapper">
+      <nav>
+        <RouterLink to="/">
+          <Logo />
+        </RouterLink>
+        <RouterLink to="/about">
+          <div class="profile-container">
+            <Profile width="32px" height="32px" />
+          </div>
+        </RouterLink>
+      </nav>
+    </div>
+  </header>
 </template>
 
 <style scoped>
+header {
+  position: sticky;
+  top: 0px;
+}
+.wrapper {
+  width: 100%;
+  position: relative;
+}
 nav {
   width: 100%;
-  display: grid;
-  grid-template-columns: 3fr 1fr 1fr;
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 1rem;
+}
+
+nav:hover {
+  /* background-color: rgba(84, 84, 84, 0.65); */
+  background: linear-gradient(#545454a6, transparent);
+}
+.profile-container {
+  border-radius: 50%;
+  background-color: #d9d9d9;
+  width: 50px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 </style>

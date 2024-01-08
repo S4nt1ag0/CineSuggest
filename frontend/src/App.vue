@@ -1,19 +1,22 @@
 <script>
 import HeaderCustom from './components/HeaderCustom.vue'
+import FooterCustom from './components/FooterCustom.vue'
 import { RouterView } from 'vue-router'
 export default {
   components: {
-    HeaderCustom
+    HeaderCustom,
+    FooterCustom
   }
 }
 </script>
 
 <template>
   <div class="max_container">
-    <header>
-      <HeaderCustom />
-    </header>
+    <HeaderCustom />
     <RouterView />
+    <footer>
+      <FooterCustom />
+    </footer>
   </div>
 </template>
 
@@ -58,7 +61,6 @@ nav a:first-of-type {
   header {
     display: flex;
     place-items: center;
-    padding-right: calc(var(--section-gap) / 2);
   }
 
   nav {

@@ -12,7 +12,6 @@ module.exports = {
             },
         });
         res.send(response.data);
-        console.log('teste');
     },
 
     details: async function (req, res, next) {
