@@ -15,7 +15,7 @@ export default {
     <div class="wrapper">
       <nav>
         <RouterLink to="/">
-          <Logo />
+          <Logo width="40vw" />
         </RouterLink>
         <RouterLink to="/about">
           <div class="profile-container">
@@ -58,5 +58,12 @@ nav:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+@media (max-width: 768px) {
+  .profile-container {
+    width: 40px;
+    height: 40px;
+  }
 }
 </style>

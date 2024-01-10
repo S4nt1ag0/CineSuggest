@@ -1,6 +1,6 @@
 <template>
   <svg
-    width="429"
+    :width="width"
     height="81.49214386940005"
     viewBox="0 0 369.6551724137931 70.21909671891073"
     class="looka-1j8o68f"
@@ -303,6 +303,15 @@
   </svg>
 </template>
 
-<script></script>
+<script>
+export default {
+  props: {
+    width: {
+      type: String,
+      default: '24px'
+    }
+  }
+}
+</script>
 
 <style scoped></style>

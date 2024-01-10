@@ -20,12 +20,13 @@ export default {
 button {
   background-color: transparent;
   border: none;
-  font-size: 14px;
+  font-size: 1rem;
   cursor: pointer;
   display: inline-block;
   padding: 0.5rem 1rem;
   border-left: 1px solid var(--color-border);
   transition: 0.4s;
+  font-weight: bold;
 }
 .inactive {
   text-decoration: none;

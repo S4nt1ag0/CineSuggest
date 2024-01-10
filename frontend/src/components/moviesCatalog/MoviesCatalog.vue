@@ -1,16 +1,16 @@
 <script>
 import MoviePoster from './MoviePoster.vue'
 import api from '../../api'
-import ButtonComponent from '../utils/ButtonComponent.vue'
 import loadingIcon from '../icons/loadingIcon.vue'
 import MovieHighlighted from './MovieHighlighted.vue'
+import NavCustom from '../NavCustom.vue'
 
 export default {
   components: {
     MoviePoster,
-    ButtonComponent,
     MovieHighlighted,
-    loadingIcon
+    loadingIcon,
+    NavCustom
   },
   data() {
     return {
@@ -48,14 +48,7 @@ export default {
   <div class="catalog-container">
     <MovieHighlighted v-if="movieCatalogData.length" :movieData="movieCatalogData[0]" />
     <loadingIcon v-else />
-    <div class="catalog-filters">
-      <ButtonComponent :active="filters.gender == ''" title="Lançamentos" />
-      <ButtonComponent :active="filters.gender == 'actiob'" title="Ação" />
-      <ButtonComponent :active="filters.gender == 'romance'" title="Romance" />
-      <ButtonComponent :active="filters.gender == 'adventure'" title="Aventura" />
-      <ButtonComponent :active="filters.gender == 'terror'" title="Terror" />
-      <ButtonComponent :active="filters.gender == 'comedy'" title="Comédia" />
-    </div>
+    <navCustom />
     <div v-if="movieCatalogData.length" class="catalog-content">
       <MoviePoster
         v-for="movie in movieCatalogData"
@@ -72,16 +65,8 @@ export default {
   display: flex;
   flex-direction: column;
   align-items: center;
-
-  .catalog-filters {
-    background-color: #343a3f;
-    width: 100%;
-    padding: 1.5rem;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-  }
   .catalog-content {
+    width: 100%;
     max-width: 1280px;
     padding: 2rem;
     display: grid;
