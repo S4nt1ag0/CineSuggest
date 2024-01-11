@@ -1,11 +1,17 @@
-const express = require('express')
-const app = express()
-require('dotenv').config()
+const express = require('express');
+const cors = require('cors');
 
-const movies = require('./routers/movies.js')
+const app = express();
+require('dotenv').config();
 
-app.use('/movies', movies)
+const movies = require('./routers/movies.js');
+app.use(
+    cors({
+        origin: '*',
+    })
+);
+app.use('/movies', movies);
 
-app.listen(3000,function(){
-    console.log('Examplo app escutando requisições na porta 3000')
-})
+app.listen(3000, function () {
+    console.log('Examplo app escutando requisições na porta 3000');
+});
