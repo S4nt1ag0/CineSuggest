@@ -1,5 +1,7 @@
 <template>
-  <button :class="active ? 'active' : 'inactive'">{{ title }}</button>
+  <button :class="active ? 'active' : 'inactive'">
+    <slot>{{ title }}</slot>
+  </button>
 </template>
 
 <script>
@@ -39,6 +41,12 @@ button {
 @media (hover: hover) {
   button:hover {
     background-color: hsla(160, 100%, 37%, 0.2);
+  }
+}
+
+@media (max-width: 1024px) {
+  button {
+    padding: 0.5rem 0.75rem;
   }
 }
 </style>

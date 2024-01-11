@@ -15,7 +15,7 @@ export default {
   }
 }
 </script>
-<style scoped>
+<style scoped lang="scss">
 .footer-container {
   width: 100%;
   height: auto;
@@ -24,5 +24,14 @@ export default {
   align-items: center;
   justify-content: center;
   margin: 20px 0px;
+
+  p {
+    text-align: center;
+  }
+}
+@media (max-width: 768px) {
+  .footer-container {
+    display: none;
+  }
 }
 </style>

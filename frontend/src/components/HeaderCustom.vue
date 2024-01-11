@@ -2,10 +2,12 @@
 import { RouterLink, RouterView } from 'vue-router'
 import Logo from './icons/logoSVG.vue'
 import Profile from './icons/profileSVG.vue'
+import TMDBSVG from './icons/TMDBSVG.vue'
 export default {
   components: {
     Logo,
-    Profile
+    Profile,
+    TMDBSVG
   }
 }
 </script>
@@ -17,6 +19,9 @@ export default {
         <RouterLink to="/">
           <Logo width="40vw" />
         </RouterLink>
+        <RouterLink to="/" class="tbmd-container">
+          <TMDBSVG height="50px" width="30vw" />
+        </RouterLink>
         <RouterLink to="/about">
           <div class="profile-container">
             <Profile width="32px" height="32px" />
@@ -27,7 +32,7 @@ export default {
   </header>
 </template>
 
-<style scoped>
+<style scoped lang="scss">
 header {
   position: sticky;
   top: 0px;
@@ -60,10 +65,26 @@ nav:hover {
   justify-content: center;
 }
 
+.tbmd-container {
+  display: none;
+}
 @media (max-width: 768px) {
   .profile-container {
-    width: 40px;
-    height: 40px;
+    display: none;
+  }
+
+  nav {
+    background-color: #343a3f;
+    a {
+      padding: 0;
+    }
+  }
+  nav:hover {
+    background-color: #343a3f;
+  }
+
+  .tbmd-container {
+    display: block;
   }
 }
 </style>
