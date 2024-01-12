@@ -54,11 +54,7 @@ export default {
       forma aprovado pelo TMDB.
     </p>
     <div v-if="movieCatalogData.length" class="catalog-content">
-      <MoviePoster
-        v-for="movie in movieCatalogData"
-        :key="movie.id"
-        :posterURL="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-      />
+      <MoviePoster v-for="movie in movieCatalogData" :key="movie.id" :movieData="movie" />
     </div>
     <loadingIcon v-else />
   </div>
