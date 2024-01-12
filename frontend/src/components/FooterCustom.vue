@@ -1,6 +1,6 @@
 <template>
   <div class="footer-container">
-    <IconTMDB height="50px" width="150px" />
+    <IconTMDB height="50px" width="300px" id="FooterTMDB" />
     <p>
       Este produto utiliza o TMDB e as APIs do TMDB, mas não é endossado, certificado ou de outra
       forma aprovado pelo TMDB.

@@ -20,7 +20,7 @@ export default {
           <Logo width="40vw" />
         </RouterLink>
         <RouterLink to="/" class="tbmd-container">
-          <TMDBSVG height="50px" width="30vw" />
+          <TMDBSVG height="50px" width="30vw" id="NavbarTMDB" />
         </RouterLink>
         <RouterLink to="/about">
           <div class="profile-container">
