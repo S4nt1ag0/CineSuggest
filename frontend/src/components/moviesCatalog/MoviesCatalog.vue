@@ -3,14 +3,12 @@ import MoviePoster from './MoviePoster.vue'
 import api from '../../api'
 import loadingIcon from '../icons/loadingIcon.vue'
 import MovieHighlighted from './MovieHighlighted.vue'
-import NavCustom from '../NavCustom.vue'
 
 export default {
   components: {
     MoviePoster,
     MovieHighlighted,
-    loadingIcon,
-    NavCustom
+    loadingIcon
   },
   data() {
     return {
@@ -48,7 +46,6 @@ export default {
   <div class="catalog-container">
     <MovieHighlighted v-if="movieCatalogData.length" :movieData="movieCatalogData[0]" />
     <loadingIcon v-else />
-    <navCustom />
     <p class="tmdb-warning">
       Este produto utiliza o TMDB e as APIs do TMDB, mas não é endossado, certificado ou de outra
       forma aprovado pelo TMDB.

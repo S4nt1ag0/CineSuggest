@@ -1,41 +1,61 @@
-<script>
-import { RouterLink, RouterView } from 'vue-router'
-import Logo from './icons/logoSVG.vue'
-import Profile from './icons/profileSVG.vue'
-import TMDBSVG from './icons/TMDBSVG.vue'
-export default {
-  components: {
-    Logo,
-    Profile,
-    TMDBSVG
-  }
-}
-</script>
-
 <template>
   <header>
     <div class="wrapper">
       <nav>
-        <RouterLink to="/">
-          <Logo width="40vw" />
-        </RouterLink>
-        <RouterLink to="/" class="tbmd-container">
-          <TMDBSVG height="50px" width="30vw" id="NavbarTMDB" />
-        </RouterLink>
-        <RouterLink to="/about">
-          <div class="profile-container">
-            <Profile width="32px" height="32px" />
-          </div>
-        </RouterLink>
+        <div class="left-content">
+          <RouterLink to="/">
+            <Logo width="25vw" />
+          </RouterLink>
+          <catalog-filter-button class="catalog-filters" />
+        </div>
+        <div class="center-content">
+          <RouterLink to="/" class="tbmd-container">
+            <TMDBSVG height="50px" width="30vw" id="NavbarTMDB" />
+          </RouterLink>
+        </div>
+        <div class="right-content">
+          <searchButton placeholderText="digite o nome do filme" />
+          <ButtonComponent class="yourlist-container">
+            <YourListIcon width="32px" height="32px" />
+          </ButtonComponent>
+          <RouterLink to="/about">
+            <div class="profile-container">
+              <Profile width="32px" height="32px" />
+            </div>
+          </RouterLink>
+        </div>
       </nav>
     </div>
   </header>
 </template>
 
+<script>
+import { RouterLink, RouterView } from 'vue-router'
+import Logo from './icons/logoSVG.vue'
+import Profile from './icons/profileSVG.vue'
+import TMDBSVG from './icons/TMDBSVG.vue'
+import ButtonComponent from './utils/ButtonComponent.vue'
+import SearchButton from './utils/SearchButton.vue'
+import YourListIcon from './icons/yourListIcon.vue'
+import CatalogFilterButton from './utils/CatalogFilterButton.vue'
+export default {
+  components: {
+    Logo,
+    Profile,
+    TMDBSVG,
+    ButtonComponent,
+    SearchButton,
+    YourListIcon,
+    CatalogFilterButton
+  }
+}
+</script>
+
 <style scoped lang="scss">
 header {
   position: sticky;
   top: 0px;
+  z-index: 1;
 }
 .wrapper {
   width: 100%;
@@ -49,11 +69,19 @@ nav {
   justify-content: space-between;
   align-items: center;
   padding: 10px 1rem;
-}
-
-nav:hover {
-  /* background-color: rgba(84, 84, 84, 0.65); */
-  background: linear-gradient(#545454a6, transparent);
+  background-color: #343a3f;
+  z-index: 1;
+  div {
+    display: flex;
+    flex-direction: row;
+  }
+  .right-content {
+    display: flex;
+    justify-content: space-around;
+    > * {
+      margin-right: 5px;
+    }
+  }
 }
 .profile-container {
   border-radius: 50%;
@@ -72,7 +100,12 @@ nav:hover {
   .profile-container {
     display: none;
   }
-
+  .catalog-filters {
+    display: none;
+  }
+  .yourlist-container {
+    display: none;
+  }
   nav {
     background-color: #343a3f;
     a {

@@ -1,11 +1,17 @@
 <template>
-  <button :class="active ? 'active' : 'inactive'">
-    <slot>{{ title }}</slot>
+  <button>
+    <CatalogIcon width="32px" height="32px" />
+    <p>Catálogo</p>
   </button>
 </template>
 
 <script>
+import CatalogIcon from '../icons/catalogIcon.vue'
+
 export default {
+  components: {
+    CatalogIcon
+  },
   props: {
     title: {
       type: String,
@@ -24,17 +30,12 @@ button {
   border: none;
   font-size: 1rem;
   cursor: pointer;
-  display: inline-block;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.5rem 1rem;
-  border-left: 1px solid var(--color-border);
   transition: 0.4s;
   font-weight: bold;
-}
-.inactive {
-  text-decoration: none;
-  color: hsla(160, 100%, 37%, 1);
-}
-.active {
   color: var(--color-text);
 }
 
