@@ -1,7 +1,12 @@
 <template>
   <div>
     <div class="search-container">
-      <input type="text" :placeholder="placeholderText" />
+      <input
+        type="text"
+        :placeholder="placeholderText"
+        @focus="handleFocus(true)"
+        @blur="handleFocus(false)"
+      />
       <searchIcon height="24px" width="24px" />
     </div>
   </div>
@@ -15,6 +20,11 @@ export default {
     placeholderText: {
       type: String,
       default: ''
+    }
+  },
+  methods: {
+    handleFocus(focused) {
+      this.$emit('handleFocused', focused)
     }
   }
 }

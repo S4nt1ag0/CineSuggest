@@ -9,12 +9,12 @@
           <catalog-filter-button class="catalog-filters" />
         </div>
         <div class="center-content">
-          <RouterLink to="/" class="tbmd-container">
+          <RouterLink v-show="showTbmd" to="/" class="tbmd-container">
             <TMDBSVG height="50px" width="30vw" id="NavbarTMDB" />
           </RouterLink>
         </div>
         <div class="right-content">
-          <searchButton placeholderText="digite o nome do filme" />
+          <searchButton @handleFocused="showTbmdContent" placeholderText="digite o nome do filme" />
           <ButtonComponent class="yourlist-container">
             <YourListIcon width="32px" height="32px" />
           </ButtonComponent>
@@ -47,6 +47,16 @@ export default {
     SearchButton,
     YourListIcon,
     CatalogFilterButton
+  },
+  data() {
+    return {
+      showTbmd: true
+    }
+  },
+  methods: {
+    showTbmdContent(focused) {
+      this.showTbmd = !focused
+    }
   }
 }
 </script>

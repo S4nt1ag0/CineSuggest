@@ -1,16 +1,22 @@
 <template>
-  <button>
+  <button @click="dropped = !dropped">
     <CatalogIcon width="32px" height="32px" />
     <p>Catálogo</p>
+    <ArrowRightIcon v-if="dropped" width="20px" height="20px" />
+    <ArrowDownIcon v-else width="20px" height="20px" />
   </button>
 </template>
 
 <script>
+import ArrowRightIcon from '../icons/ArrowRightIcon.vue'
+import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
 import CatalogIcon from '../icons/catalogIcon.vue'
 
 export default {
   components: {
-    CatalogIcon
+    CatalogIcon,
+    ArrowRightIcon,
+    ArrowDownIcon
   },
   props: {
     title: {
@@ -20,6 +26,11 @@ export default {
     active: {
       type: Boolean,
       default: false
+    }
+  },
+  data() {
+    return {
+      dropped: false
     }
   }
 }
