@@ -1,9 +1,9 @@
 <template>
-  <button @click="dropped = !dropped">
+  <button @click="dropped = !dropped" class="catalogButton">
     <CatalogIcon width="32px" height="32px" />
     <p>Catálogo</p>
-    <ArrowRightIcon v-if="dropped" width="20px" height="20px" />
-    <ArrowDownIcon v-else width="20px" height="20px" />
+    <ArrowRightIcon v-if="dropped" width="20px" height="20px" class="catalogArrows" />
+    <ArrowDownIcon v-else width="20px" height="20px" class="catalogArrows" />
   </button>
 </template>
 
@@ -18,16 +18,6 @@ export default {
     ArrowRightIcon,
     ArrowDownIcon
   },
-  props: {
-    title: {
-      type: String,
-      default: ''
-    },
-    active: {
-      type: Boolean,
-      default: false
-    }
-  },
   data() {
     return {
       dropped: false
@@ -35,8 +25,8 @@ export default {
   }
 }
 </script>
-<style scoped>
-button {
+<style scoped lang="scss">
+.catalogButton {
   background-color: transparent;
   border: none;
   font-size: 1rem;
@@ -51,8 +41,21 @@ button {
 }
 
 @media (max-width: 1024px) {
-  button {
+  .catalogButton {
     padding: 0.5rem 0.75rem;
+  }
+}
+@media (max-width: 768px) {
+  .catalogButton {
+    display: flex;
+    flex-direction: column;
+
+    p {
+      margin-top: 5px;
+    }
+    .catalogArrows {
+      display: none;
+    }
   }
 }
 </style>

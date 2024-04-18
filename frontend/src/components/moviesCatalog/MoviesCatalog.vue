@@ -3,12 +3,14 @@ import MoviePoster from './MoviePoster.vue'
 import api from '../../api'
 import loadingIcon from '../icons/loadingIcon.vue'
 import MovieHighlighted from './MovieHighlighted.vue'
+import NavCustom from '../NavCustom.vue'
 
 export default {
   components: {
     MoviePoster,
     MovieHighlighted,
-    loadingIcon
+    loadingIcon,
+    NavCustom
   },
   data() {
     return {
@@ -54,6 +56,7 @@ export default {
       <MoviePoster v-for="movie in movieCatalogData" :key="movie.id" :movieData="movie" />
     </div>
     <loadingIcon v-else />
+    <NavCustom />
   </div>
 </template>
 
