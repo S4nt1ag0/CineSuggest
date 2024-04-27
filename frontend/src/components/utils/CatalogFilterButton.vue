@@ -106,7 +106,11 @@ export default {
       }
     }
     .catalog_filter_content {
-      bottom: 0;
+      top: -220px;
+      left: -75px;
+      button {
+        width: 160px;
+      }
     }
   }
 }

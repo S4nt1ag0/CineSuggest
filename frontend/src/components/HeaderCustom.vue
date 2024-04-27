@@ -73,7 +73,6 @@ header {
 }
 nav {
   width: 100%;
-  position: absolute;
   display: flex;
   flex-direction: row;
   justify-content: space-between;

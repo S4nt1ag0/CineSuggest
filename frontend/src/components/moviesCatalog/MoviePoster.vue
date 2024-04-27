@@ -68,6 +68,9 @@ export default {
         font-size: 0.8rem;
         color: #fff;
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        max-height: 250px;
+        overflow: hidden;
+        text-overflow: ellipsis;
       }
     }
   }
