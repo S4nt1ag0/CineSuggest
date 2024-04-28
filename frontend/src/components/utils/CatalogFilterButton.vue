@@ -7,22 +7,22 @@
       <ArrowDownIcon v-else width="20px" height="20px" class="catalogArrows" />
     </button>
     <div class="catalog_filter_content" v-if="dropped">
-      <ButtonComponent>Ação</ButtonComponent>
-      <ButtonComponent>Aventura</ButtonComponent>
-      <ButtonComponent>Terror</ButtonComponent>
-      <ButtonComponent>Misterio</ButtonComponent>
-      <ButtonComponent>Comédia</ButtonComponent>
-      <ButtonComponent>Drama</ButtonComponent>
-      <ButtonComponent>Ficção Cientifica</ButtonComponent>
-      <ButtonComponent>Fantasia</ButtonComponent>
-      <ButtonComponent>Suspense</ButtonComponent>
-      <ButtonComponent>Sobrenatural</ButtonComponent>
-      <ButtonComponent>Esportes</ButtonComponent>
+      <ButtonComponent
+        v-for="gender in genderCatalog"
+        :key="gender.label"
+        @click="
+          () => {
+            changeGenderFilter(gender.value)
+          }
+        "
+        >{{ gender.label }}</ButtonComponent
+      >
     </div>
   </div>
 </template>
 
 <script>
+import { mapActions } from 'vuex'
 import ArrowRightIcon from '../icons/ArrowRightIcon.vue'
 import ArrowDownIcon from '../icons/ArrowDownIcon.vue'
 import CatalogIcon from '../icons/catalogIcon.vue'
@@ -37,8 +37,24 @@ export default {
   },
   data() {
     return {
-      dropped: false
+      dropped: false,
+      genderCatalog: [
+        { value: 'action', label: 'Ação' },
+        { value: 'adventure', label: 'Aventura' },
+        { value: 'terror', label: 'Terror' },
+        { value: 'mysterio', label: 'Misterio' },
+        { value: 'action', label: 'Comédia' },
+        { value: 'action', label: 'Drama' },
+        { value: 'action', label: 'Ficção Cientifica' },
+        { value: 'action', label: 'Fantasia' },
+        { value: 'action', label: 'Suspense' },
+        { value: 'action', label: 'Sobrenatural' },
+        { value: 'action', label: 'Esportes' }
+      ]
     }
+  },
+  methods: {
+    ...mapActions(['changeGenderFilter'])
   }
 }
 </script>
