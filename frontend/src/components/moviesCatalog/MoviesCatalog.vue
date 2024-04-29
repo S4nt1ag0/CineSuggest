@@ -9,13 +9,16 @@
     <div v-if="movieCatalogData.length" class="catalog-content">
       <MoviePoster v-for="movie in movieCatalogData" :key="movie.id" :movieData="movie" />
     </div>
+    <div v-if="movieCatalogData.length && !isLoading" class="load-more">
+      <span @click="handleChangePage">Ver mais...</span>
+    </div>
     <loadingIcon v-else />
     <NavCustom />
   </div>
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapActions } from 'vuex'
 import MoviePoster from './MoviePoster.vue'
 import api from '../../api'
 import loadingIcon from '../icons/loadingIcon.vue'
@@ -32,7 +35,8 @@ export default {
   data() {
     return {
       movieCatalogData: [],
-      pageCount: 1
+      flagToConcat: false,
+      isLoading: false
     }
   },
   computed: {
@@ -49,28 +53,38 @@ export default {
       deep: true
     }
   },
-
   created() {
     this.loadMoviesCatalog()
   },
   methods: {
+    ...mapActions(['changePageFilter']),
     loadMoviesCatalog() {
+      this.isLoading = true
       const queryParams = this.objectToQueryParams(this.filters)
       api
         .get(`/movies?${queryParams}`)
         .then((response) => {
           const data = response.data
-          this.movieCatalogData = data.results
-          this.pageCount = data.page
+          this.movieCatalogData = this.flagToConcat
+            ? [...this.movieCatalogData, ...data.results]
+            : data.results
         })
         .catch((e) => {
           console.log(e)
+        })
+        .finally(() => {
+          this.flagToConcat = false
+          this.isLoading = false
         })
     },
     objectToQueryParams(obj) {
       return Object.keys(obj)
         .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`)
         .join('&')
+    },
+    handleChangePage() {
+      this.flagToConcat = true
+      this.changePageFilter(this.filters.page + 1)
     }
   }
 }
@@ -89,6 +103,19 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(200px, auto));
     grid-auto-flow: row;
     gap: 20px;
+  }
+  .load-more {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3797b1;
+    font-size: 1.2rem;
+    font-weight: 500;
+    span:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
 }
 

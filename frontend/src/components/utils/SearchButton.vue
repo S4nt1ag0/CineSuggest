@@ -6,6 +6,8 @@
         :placeholder="placeholderText"
         @focus="handleFocus(true)"
         @blur="handleFocus(false)"
+        v-model="filterbyName"
+        @input="handleInput"
       />
       <searchIcon height="24px" width="24px" />
     </div>
@@ -14,6 +16,8 @@
 
 <script>
 import SearchIcon from '../icons/SearchIcon.vue'
+import { mapActions } from 'vuex'
+
 export default {
   components: { SearchIcon },
   props: {
@@ -22,9 +26,23 @@ export default {
       default: ''
     }
   },
+  data() {
+    return {
+      filterbyName: '',
+      timeoutId: null
+    }
+  },
   methods: {
+    ...mapActions(['changeGenderFilter']),
     handleFocus(focused) {
       this.$emit('handleFocused', focused)
+    },
+    handleInput() {
+      clearTimeout(this.timeoutId)
+
+      this.timeoutId = setTimeout(() => {
+        this.changeGenderFilter(this.filterbyName)
+      }, 500)
     }
   }
 }
