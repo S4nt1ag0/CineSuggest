@@ -1,4 +1,24 @@
+<template>
+  <div class="catalog-container">
+    <MovieHighlighted v-if="movieCatalogData.length" :movieData="movieCatalogData[0]" />
+    <loadingIcon v-else />
+    <p class="tmdb-warning">
+      Este produto utiliza o TMDB e as APIs do TMDB, mas não é endossado, certificado ou de outra
+      forma aprovado pelo TMDB.
+    </p>
+    <div v-if="movieCatalogData.length" class="catalog-content">
+      <MoviePoster v-for="movie in movieCatalogData" :key="movie.id" :movieData="movie" />
+    </div>
+    <div v-if="movieCatalogData.length && !isLoading" class="load-more">
+      <span @click="handleChangePage">Ver mais...</span>
+    </div>
+    <loadingIcon v-else />
+    <NavCustom />
+  </div>
+</template>
+
 <script>
+import { mapGetters, mapActions } from 'vuex'
 import MoviePoster from './MoviePoster.vue'
 import api from '../../api'
 import loadingIcon from '../icons/loadingIcon.vue'
@@ -15,54 +35,59 @@ export default {
   data() {
     return {
       movieCatalogData: [],
-      pageCount: 1,
-      filters: {
-        gender: '',
-        text: '',
-        page: 1
-      }
+      flagToConcat: false,
+      isLoading: false
+    }
+  },
+  computed: {
+    ...mapGetters({
+      filters: 'getFilters'
+    })
+  },
+  watch: {
+    filters: {
+      handler: function (novoValor) {
+        this.loadMoviesCatalog()
+      },
+      deep: true
     }
   },
   created() {
     this.loadMoviesCatalog()
   },
   methods: {
+    ...mapActions(['changePageFilter']),
     loadMoviesCatalog() {
+      this.isLoading = true
+      const queryParams = this.objectToQueryParams(this.filters)
       api
-        .get('/movies')
+        .get(`/movies?${queryParams}`)
         .then((response) => {
           const data = response.data
-          this.movieCatalogData = data.results
-          this.pageCount = data.page
-          console.log(this.movieCatalogData)
+          this.movieCatalogData = this.flagToConcat
+            ? [...this.movieCatalogData, ...data.results]
+            : data.results
         })
         .catch((e) => {
           console.log(e)
         })
+        .finally(() => {
+          this.flagToConcat = false
+          this.isLoading = false
+        })
+    },
+    objectToQueryParams(obj) {
+      return Object.keys(obj)
+        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(obj[key])}`)
+        .join('&')
+    },
+    handleChangePage() {
+      this.flagToConcat = true
+      this.changePageFilter(this.filters.page + 1)
     }
   }
 }
 </script>
-
-<template>
-  <div class="catalog-container">
-    <MovieHighlighted v-if="movieCatalogData.length" :movieData="movieCatalogData[0]" />
-    <loadingIcon v-else />
-    <navCustom />
-    <p class="tmdb-warning">
-      Este produto utiliza o TMDB e as APIs do TMDB, mas não é endossado, certificado ou de outra
-      forma aprovado pelo TMDB.
-    </p>
-    <div v-if="movieCatalogData.length" class="catalog-content">
-      <MoviePoster
-        v-for="movie in movieCatalogData"
-        :key="movie.id"
-        :posterURL="'https://image.tmdb.org/t/p/w300' + movie.poster_path"
-      />
-    </div>
-    <loadingIcon v-else />
-  </div>
-</template>
 
 <style scoped lang="scss">
 .catalog-container {
@@ -77,6 +102,19 @@ export default {
     grid-template-columns: repeat(auto-fit, minmax(200px, auto));
     grid-auto-flow: row;
     gap: 20px;
+  }
+  .load-more {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #3797b1;
+    font-size: 1.2rem;
+    font-weight: 500;
+    span:hover {
+      cursor: pointer;
+      text-decoration: underline;
+    }
   }
 }
 

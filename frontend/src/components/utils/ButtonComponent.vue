@@ -38,12 +38,6 @@ button {
   color: var(--color-text);
 }
 
-@media (hover: hover) {
-  button:hover {
-    background-color: hsla(160, 100%, 37%, 0.2);
-  }
-}
-
 @media (max-width: 1024px) {
   button {
     padding: 0.5rem 0.75rem;
