@@ -1,5 +1,5 @@
 <template>
-  <div class="Movie-Poster-Container">
+  <div class="Movie-Poster-Container" @click="handleDetailsMovie">
     <img :src="backgroundUrl" alt="poster" />
     <div class="Movie-Poster-Content">
       <div class="Movie-Poster-Info">
@@ -24,6 +24,11 @@ export default {
         'https://image.tmdb.org/t/p/w300' + this.movieData.poster_path ||
         'https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Nasus_0.jpg'
       )
+    }
+  },
+  methods: {
+    handleDetailsMovie() {
+      this.$router.push({ name: 'movieview', params: { id: this.movieData.id } })
     }
   }
 }

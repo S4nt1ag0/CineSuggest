@@ -48,7 +48,6 @@ export default {
     filters: {
       handler: function (novoValor) {
         this.loadMoviesCatalog()
-        console.log(novoValor)
       },
       deep: true
     }

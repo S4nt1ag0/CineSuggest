@@ -27,9 +27,6 @@ export default {
     return {
       backgroundUrl: 'https://image.tmdb.org/t/p/w1280' + this.movieData.poster_path
     }
-  },
-  mounted() {
-    console.log(this.movieData)
   }
 }
 </script>

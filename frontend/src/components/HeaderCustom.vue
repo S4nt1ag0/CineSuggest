@@ -30,7 +30,6 @@
 </template>
 
 <script>
-import { RouterLink, RouterView } from 'vue-router'
 import Logo from './icons/logoSVG.vue'
 import Profile from './icons/profileSVG.vue'
 import TMDBSVG from './icons/TMDBSVG.vue'
