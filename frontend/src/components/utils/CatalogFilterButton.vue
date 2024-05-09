@@ -8,14 +8,14 @@
     </button>
     <div class="catalog_filter_content" v-if="dropped">
       <ButtonComponent
-        v-for="gender in genderCatalog"
-        :key="gender.label"
+        v-for="genre in genreCatalog"
+        :key="genre.label"
         @click="
           () => {
-            changeGenderFilter(gender.value)
+            changeGenreFilter(genre.value)
           }
         "
-        >{{ gender.label }}</ButtonComponent
+        >{{ genre.label }}</ButtonComponent
       >
     </div>
   </div>
@@ -38,23 +38,23 @@ export default {
   data() {
     return {
       dropped: false,
-      genderCatalog: [
-        { value: 'action', label: 'Ação' },
-        { value: 'adventure', label: 'Aventura' },
-        { value: 'terror', label: 'Terror' },
-        { value: 'mysterio', label: 'Misterio' },
-        { value: 'action', label: 'Comédia' },
-        { value: 'action', label: 'Drama' },
-        { value: 'action', label: 'Ficção Cientifica' },
-        { value: 'action', label: 'Fantasia' },
-        { value: 'action', label: 'Suspense' },
-        { value: 'action', label: 'Sobrenatural' },
-        { value: 'action', label: 'Esportes' }
+      genreCatalog: [
+        { value: 'Action', label: 'Ação' },
+        { value: 'Adventure', label: 'Aventura' },
+        { value: 'Horror', label: 'Terror' },
+        { value: 'Mystery', label: 'Misterio' },
+        { value: 'Comedy', label: 'Comédia' },
+        { value: 'Drama', label: 'Drama' },
+        { value: 'Science Fiction', label: 'Ficção Cientifica' },
+        { value: 'Fantasy', label: 'Fantasia' },
+        { value: 'Thriller', label: 'Suspense' },
+        { value: 'Romance', label: 'Romance' },
+        { value: 'Animation', label: 'Animação' }
       ]
     }
   },
   methods: {
-    ...mapActions(['changeGenderFilter'])
+    ...mapActions(['changeGenreFilter'])
   }
 }
 </script>

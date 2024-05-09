@@ -4,7 +4,7 @@ const store = createStore({
   state() {
     return {
       filters: {
-        gender: '',
+        genre: '',
         text: '',
         page: 1
       }
@@ -16,8 +16,8 @@ const store = createStore({
     }
   },
   mutations: {
-    changeGenderFilter(state, gender) {
-      state.filters.gender = gender
+    changeGenreFilter(state, genre) {
+      state.filters.genre = genre
     },
     changePageFilter(state, page) {
       state.filters.page = page
@@ -27,8 +27,8 @@ const store = createStore({
     }
   },
   actions: {
-    changeGenderFilter(context, gender) {
-      context.commit('changeGenderFilter', gender)
+    changeGenreFilter(context, genre) {
+      context.commit('changeGenreFilter', genre)
     },
     changePageFilter(context, page) {
       context.commit('changePageFilter', page)

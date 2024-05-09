@@ -1,18 +1,18 @@
 <template>
   <div class="mobile-navbar">
-    <ButtonComponent :active="filters.gender == ''">
+    <ButtonComponent :active="filters.genre == ''">
       <HomeIcon width="32px" height="32px" />
       <p>Home</p>
     </ButtonComponent>
 
     <catalog-filter-button class="catalog-filters" />
 
-    <ButtonComponent :active="filters.gender == ''">
+    <ButtonComponent :active="filters.genre == ''">
       <your-list-icon width="32px" height="32px" />
       <p>Salvos</p>
     </ButtonComponent>
 
-    <ButtonComponent :active="filters.gender == ''">
+    <ButtonComponent :active="filters.genre == ''">
       <div class="profile-container">
         <ProfileSVG width="28px" height="28px" />
       </div>
@@ -38,7 +38,7 @@ export default {
   data() {
     return {
       filters: {
-        gender: '',
+        genre: '',
         text: '',
         page: 1
       }

@@ -4,9 +4,12 @@ let generesList = [];
 
 function convertGenres(handlegenre) {
     const genreSelected = generesList.find(
-        (genre) => genre.name.toLowerCase() == handlegenre
+        (genre) => genre.name.toLowerCase() == handlegenre.toLowerCase()
     );
-    return genreSelected ? genreSelected.id : null;
+    if (genreSelected) {
+        return genreSelected.id;
+    }
+    return null;
 }
 
 module.exports = {
@@ -30,13 +33,15 @@ module.exports = {
         };
         let route = '/discover/movie';
 
+        if (filters.genre != '') {
+            params.with_genres = convertGenres(filters.genre);
+        }
+
         if (filters.text != '') {
             params.query = filters.text;
             route = '/search/movie';
         }
-        if (filters.gender != '') {
-            params.with_genres = convertGenres(filters.gender);
-        }
+
         const response = await axios.get(route, {
             params,
         });

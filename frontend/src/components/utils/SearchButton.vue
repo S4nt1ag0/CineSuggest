@@ -33,7 +33,7 @@ export default {
     }
   },
   methods: {
-    ...mapActions(['changeGenderFilter']),
+    ...mapActions(['changeTextFilter']),
     handleFocus(focused) {
       this.$emit('handleFocused', focused)
     },
@@ -41,7 +41,7 @@ export default {
       clearTimeout(this.timeoutId)
 
       this.timeoutId = setTimeout(() => {
-        this.changeGenderFilter(this.filterbyName)
+        this.changeTextFilter(this.filterbyName)
       }, 500)
     }
   }
